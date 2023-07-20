@@ -1,5 +1,7 @@
 package class2;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class BaekJoon10814 {
@@ -8,40 +10,42 @@ public class BaekJoon10814 {
 		
 		int N = scan.nextInt();
 		
-		int age[] = new int[N];
-		String[] name = new String[N];
-		int order[] = new int[N];
-		for(int i = 0 ; i <N;i++) {
-			age[i] = scan.nextInt();
-			name[i] = scan.next();
-			order[i] = 1;
-		}
+		Member[] memberlist = new Member[N];
 		Member temp;
-		for(int i = 0 ; i<N;i++) {
-			for(int j = 0 ; j<N;j++) {
-				if(age[i] > age[j] ) order[i]++;
-			}
+		for(int i = 0 ; i <N;i++) {
+			memberlist[i] = new Member();
+			memberlist[i].age = scan.nextInt();
+			memberlist[i].name = scan.next();
 		}
+
+		Arrays.sort(memberlist,new Comparator<Member>() {
+			// 나이순으로 정렬
+			@Override
+			public int compare(Member m1, Member m2) {
+				return m1.age - m2.age;
+			}
+			
+		});
+
 		
 		StringBuilder sb = new StringBuilder();
 		
-		for(int i = 1 ; i<=N;i++) {
-			for(int j= 0 ; j<N;j++) {
-				if(order[j] == i)sb.append(age[j] + " " + name[j]).append("\n");
-			}
+		for(int j= 0 ; j<N;j++) {
+				sb.append(memberlist[j]);
 		}
 		
 		System.out.print(sb);
-		
-		
-		
-		
-		
+	
 	}
 }
 
 class Member{
 	int age;
-	int order;
-	String name;	
+	String name;
+	
+	public String toString() {
+		return age + " " + name +"\n";
+	}
 }
+
+
