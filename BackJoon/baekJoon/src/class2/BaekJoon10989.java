@@ -1,24 +1,26 @@
 package class2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class BaekJoon10989{
-    public static void main(String[] args){
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) throws IOException{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
         
-        int N  = scan.nextInt();
-        
-        int[] arr = new int[N];
-        
-        for(int i = 0; i<arr.length;i++){
-            arr[i] = scan.nextInt();
-        }
-        
+		int N = Integer.parseInt(br.readLine());
+	
+		int[] arr = new int[N];
+		
+		for(int i = 0; i < N; i++){
+			sb.append(arr[i]).append('\n');
+		}
+
         Arrays.sort(arr);
         
-        for(int i = 0 ; i<arr.length;i++) {
-        	System.out.println(arr[i]);
-        }
+        System.out.println(sb);
+        
     }
 }
